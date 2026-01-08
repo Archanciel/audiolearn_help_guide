@@ -2,7 +2,7 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
-import '../models/help_step.dart';
+import '../../models/help_step.dart';
 
 class HelpStepPage extends StatelessWidget {
   final HelpStep step;
