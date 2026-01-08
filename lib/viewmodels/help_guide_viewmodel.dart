@@ -30,14 +30,14 @@ class HelpGuideViewModel extends ChangeNotifier {
         description: 'Apprenez à créer une playlist YouTube Non répertoriée ou Publique',
         icon: Icons.playlist_add,
         startStep: 1,
-        endStep: 8,
+        endStep: 9,
       ),
       HelpSection(
-        id: 'add_to_audiolearn',
-        title: 'Ajouter la Playlist dans AudioLearn',
+        id: 'download_playlist',
+        title: 'Télécharger la Playlist',
         description: 'Téléchargez les audios de votre playlist dans l\'application',
         icon: Icons.download,
-        startStep: 9,
+        startStep: 10,
         endStep: 24,
       ),
       HelpSection(

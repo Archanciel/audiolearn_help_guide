@@ -64,8 +64,8 @@ class NavigationButtons extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   backgroundColor: isLastPage
-                      ? Colors.green[600]
-                      : Theme.of(context).primaryColor,
+                      ? const Color.fromARGB(255, 160, 160, 67)
+                      : const Color.fromARGB(255, 92, 160, 67)
                 ),
               ),
             ),

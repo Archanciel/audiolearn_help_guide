@@ -17,11 +17,11 @@ class HelpStepPage extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          // Image (capture d'écran)
-          _buildImageViewer(context),
-
           // Conteneur avec titre et description
           _buildDescriptionContainer(context),
+          
+          // Image (capture d'écran)
+          _buildImageViewer(context),
         ],
       ),
     );
