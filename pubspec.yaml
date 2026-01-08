@@ -27,5 +27,5 @@ flutter:
 
   # Assets
   assets:
-    - assets/help/help_content.json
-    - assets/help/images/
+    - assets/help/french/help_content.json
+    - assets/help/french/images/

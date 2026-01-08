@@ -58,7 +58,7 @@ class HelpGuideViewModel extends ChangeNotifier {
       notifyListeners();
 
       final String jsonString = 
-          await rootBundle.loadString('assets/help/help_content.json');
+          await rootBundle.loadString('assets/help/french/help_content.json');
       final List<dynamic> jsonData = json.decode(jsonString);
 
       _allSteps = jsonData.map((json) => HelpStep.fromJson(json)).toList();
