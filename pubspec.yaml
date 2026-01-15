@@ -27,5 +27,5 @@ flutter:
 
   # Assets
   assets:
-    - assets/help/french/help_content.json
-    - assets/help/french/images/
+    - assets/help/french/playlist_usage/help_content.json
+    - assets/help/french/playlist_usage/images/
