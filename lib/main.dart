@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:window_size/window_size.dart';
-import 'views/help_table_of_contents_screen.dart';
+import 'views/help_categories_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding
@@ -52,7 +52,7 @@ class AudioLearnHelpApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'AudioLearn - Guide d\'utilisation',
+      title: 'AudioLearn - Aide',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -105,7 +105,7 @@ class AudioLearnHelpApp extends StatelessWidget {
         ),
       ),
       themeMode: ThemeMode.system,
-      home: const HelpTableOfContentsScreen(),
+      home: const HelpCategoriesScreen(),
     );
   }
 }

@@ -7,6 +7,8 @@ import '../models/help_step.dart';
 import '../models/help_section.dart';
 
 class HelpGuideViewModel extends ChangeNotifier {
+  final String jsonFilePath;
+  
   List<HelpStep> _allSteps = [];
   List<HelpSection> _sections = [];
   bool _isLoading = true;
@@ -17,38 +19,69 @@ class HelpGuideViewModel extends ChangeNotifier {
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
 
-  HelpGuideViewModel() {
+  HelpGuideViewModel({
+    required this.jsonFilePath,
+  }) {
     _initializeSections();
     _loadHelpContent();
   }
 
   void _initializeSections() {
-    _sections = [
-      HelpSection(
-        id: 'create_playlist',
-        title: 'Créer une Playlist YouTube',
-        description: 'Apprenez à créer une playlist YouTube Non répertoriée ou Publique',
-        icon: Icons.playlist_add,
-        startStep: 1,
-        endStep: 13,
-      ),
-      HelpSection(
-        id: 'download_playlist',
-        title: 'Télécharger la Playlist',
-        description: 'Téléchargez les audios de votre playlist dans l\'application',
-        icon: Icons.download,
-        startStep: 14,
-        endStep: 19,
-      ),
-      HelpSection(
-        id: 'download_single',
-        title: 'Télécharger une Vidéo Unique',
-        description: 'Téléchargez l\'audio d\'une seule vidéo YouTube',
-        icon: Icons.video_library,
-        startStep: 20,
-        endStep: 26,
-      ),
-    ];
+    // Sections pour "Introduction d'Audio Learn" (playlist_usage)
+    if (jsonFilePath.contains('playlist_usage')) {
+      _sections = [
+        HelpSection(
+          id: 'create_playlist',
+          title: 'Créer une Playlist YouTube',
+          description: 'Apprenez à créer une playlist YouTube Non répertoriée ou Publique',
+          icon: Icons.playlist_add,
+          startStep: 1,
+          endStep: 13,
+        ),
+        HelpSection(
+          id: 'download_playlist',
+          title: 'Télécharger la Playlist',
+          description: 'Téléchargez les audios de votre playlist dans l\'application',
+          icon: Icons.download,
+          startStep: 14,
+          endStep: 19,
+        ),
+        HelpSection(
+          id: 'download_single',
+          title: 'Télécharger une Vidéo Unique',
+          description: 'Téléchargez l\'audio d\'une seule vidéo YouTube',
+          icon: Icons.video_library,
+          startStep: 20,
+          endStep: 26,
+        ),
+      ];
+    }
+    // Sections pour "Menu Playlist"
+    else if (jsonFilePath.contains('menu_playlist')) {
+      _sections = [
+        HelpSection(
+          id: 'playlist_operations',
+          title: 'Opérations sur les Playlists',
+          description: 'Gérer, modifier et supprimer vos playlists',
+          icon: Icons.playlist_play,
+          startStep: 1,
+          endStep: 10,
+        ),
+      ];
+    }
+    // Sections pour "Menu Audio"
+    else if (jsonFilePath.contains('menu_audio')) {
+      _sections = [
+        HelpSection(
+          id: 'audio_controls',
+          title: 'Contrôles Audio',
+          description: 'Lecture, pause et navigation dans les audios',
+          icon: Icons.audiotrack,
+          startStep: 1,
+          endStep: 10,
+        ),
+      ];
+    }
   }
 
   Future<void> _loadHelpContent() async {
@@ -57,8 +90,7 @@ class HelpGuideViewModel extends ChangeNotifier {
       _errorMessage = null;
       notifyListeners();
 
-      final String jsonString = 
-          await rootBundle.loadString('assets/help/french/playlist_usage/help_content.json');
+      final String jsonString = await rootBundle.loadString(jsonFilePath);
       final List<dynamic> jsonData = json.decode(jsonString);
 
       _allSteps = jsonData.map((json) => HelpStep.fromJson(json)).toList();

@@ -1,21 +1,29 @@
-// lib/views/help_table_of_contents_screen.dart
+// lib/views/help_sections_screen.dart
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../viewmodels/help_guide_viewmodel.dart';
 import '../models/help_section.dart';
+import '../models/help_category.dart';
 import 'help_steps_screen.dart';
 
-class HelpTableOfContentsScreen extends StatelessWidget {
-  const HelpTableOfContentsScreen({super.key});
+class HelpSectionsScreen extends StatelessWidget {
+  final HelpCategory category;
+
+  const HelpSectionsScreen({
+    super.key,
+    required this.category,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => HelpGuideViewModel(),
+      create: (_) => HelpGuideViewModel(
+        jsonFilePath: category.jsonFilePath,
+      ),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Guide d\'utilisation AudioLearn'),
+          title: Text(category.title),
           centerTitle: true,
           elevation: 2,
         ),
@@ -38,10 +46,13 @@ class HelpTableOfContentsScreen extends StatelessWidget {
                       color: Colors.red[300],
                     ),
                     const SizedBox(height: 16),
-                    Text(
-                      viewModel.errorMessage!,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(fontSize: 16),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 32),
+                      child: Text(
+                        viewModel.errorMessage!,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(fontSize: 16),
+                      ),
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton.icon(
@@ -54,14 +65,14 @@ class HelpTableOfContentsScreen extends StatelessWidget {
               );
             }
 
-            return _buildTableOfContents(context, viewModel);
+            return _buildSectionsList(context, viewModel);
           },
         ),
       ),
     );
   }
 
-  Widget _buildTableOfContents(
+  Widget _buildSectionsList(
     BuildContext context,
     HelpGuideViewModel viewModel,
   ) {
@@ -85,16 +96,16 @@ class HelpTableOfContentsScreen extends StatelessWidget {
         child: Column(
           children: [
             Icon(
-              Icons.help_outline,
+              category.icon,
               size: 60,
               color: Colors.blue[700],
             ),
             const SizedBox(height: 12),
-            const Text(
-              'Bienvenue dans le guide AudioLearn',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+            Text(
+              category.description,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
               ),
               textAlign: TextAlign.center,
             ),
