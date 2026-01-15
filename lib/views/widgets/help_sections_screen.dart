@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../viewmodels/help_guide_viewmodel.dart';
-import '../models/help_section.dart';
-import '../models/help_category.dart';
+import '../../viewmodels/help_guide_viewmodel.dart';
+import '../../models/help_section.dart';
+import '../../models/help_category.dart';
 import 'help_steps_screen.dart';
 
 class HelpSectionsScreen extends StatelessWidget {

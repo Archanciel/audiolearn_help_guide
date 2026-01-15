@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../models/help_step.dart';
-import '../viewmodels/help_page_viewmodel.dart';
-import 'widgets/help_step_page.dart';
-import 'widgets/page_indicator.dart';
-import 'widgets/navigation_buttons.dart';
+import '../../models/help_step.dart';
+import '../../viewmodels/help_page_viewmodel.dart';
+import 'help_step_page.dart';
+import 'page_indicator.dart';
+import 'navigation_buttons.dart';
 
 class HelpStepsScreen extends StatelessWidget {
   final List<HelpStep> steps;

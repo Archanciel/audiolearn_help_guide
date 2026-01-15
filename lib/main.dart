@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:window_size/window_size.dart';
-import 'views/help_categories_screen.dart';
+import 'views/widgets/help_categories_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding
@@ -13,7 +13,7 @@ Future<void> main() async {
   // Now proceed with setting up the app window size and position if needed
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     await _setWindowsAppSizeAndPosition(
-      isTest: false,
+      isTest: true,
       // isTest: false,
     );
   }
